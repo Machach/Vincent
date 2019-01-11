@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -23,6 +24,7 @@ import com.example.machachong.youdu.module.recommand.RecommandBodyValue;
 
 
 import java.util.ArrayList;
+
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -208,7 +210,9 @@ public class CourseAdapter extends BaseAdapter {
                 //  动态添加ImageView到水平的ScrollView中。
                 mViewHolder.mProductLayout.removeAllViews();//删除已有图片
                 for (String url:value.url){
-                    mViewHolder.mProductLayout.addView(createImageView(url));
+                    ImageView mmImageView = createImageView(url);
+
+                    mViewHolder.mProductLayout.addView(mmImageView);
                 }
                 break;
             case CARD_TYPE_THREE:

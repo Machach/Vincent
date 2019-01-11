@@ -15,10 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imoocsdk.activity.AdBrowserActivity;
+import com.example.machachong.youdu.activity.PhotoViewActivity;
 import com.example.machachong.youdu.activity.base.BaseActivity;
 import com.example.imoocsdk.okhttp.listener.DisposeDataListener;
 import com.example.machachong.youdu.adapter.CourseAdapter;
+import com.example.machachong.youdu.adapter.PhotoPagerAdapter;
 import com.example.machachong.youdu.constant.Constant;
+import com.example.machachong.youdu.module.recommand.RecommandBodyValue;
+import com.example.machachong.youdu.module.recommand.RecommandHeadValue;
 import com.example.machachong.youdu.view.fragment.BaseFragment;
 import com.example.machachong.youdu.R;
 import com.example.machachong.youdu.module.recommand.BaseRecommandModule;
@@ -56,7 +60,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RequestRecommandData();
     }
 
     @Override
@@ -64,6 +67,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
         mContext = getActivity();
         mContentView = inflater.inflate(R.layout.fragment_home_layout,container,false);
         initView();
+        RequestRecommandData();
         return mContentView;
     }
     private void initView(){
@@ -74,7 +78,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
         mSearchView = mContentView.findViewById(R.id.search_view);
         mSearchView.setOnClickListener(this);
         mListView = mContentView.findViewById(R.id.list_view);
-//        mListView.setOnClickListener(this);
+        mListView.setOnItemClickListener(this);
         mLoadingView = mContentView.findViewById(R.id.loading_view);
         //启动动画
         AnimationDrawable anim = (AnimationDrawable) mLoadingView.getDrawable();
@@ -156,6 +160,15 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        RecommandBodyValue value = (RecommandBodyValue) mAdapter.getItem(
+                position - mListView.getHeaderViewsCount());
+
+        if (value.type != 0){
+            Intent intent = new Intent(mContext, PhotoViewActivity.class);
+            intent.putStringArrayListExtra(PhotoViewActivity.PHOTO_LIST, value.url);
+            startActivity(intent);
+        }
 
     }
 
