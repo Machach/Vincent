@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.machachong.youdu">
+
+    <application
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="任意字符"
+        android:fullBackupContent="true"
+        android:name=".application.ImoocApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="ImoocBusiness"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <activity
+            android:name="com.example.machachong.youdu.activity.HomeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.example.machachong.youdu.activity.HomeActivity"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.imoocsdk.activity.AdBrowserActivity"/>
+        <activity android:name=".activity.SettingActivity"/>
+        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name="com.example.imoocsdk.BaseOkhttpTest" />
+
+
+
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+</manifest>
