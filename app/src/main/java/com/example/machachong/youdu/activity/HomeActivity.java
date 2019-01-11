@@ -45,9 +45,9 @@ public class HomeActivity extends BaseActivity  {
 //    private TextView mMinerView;
     //https://segmentfault.com/a/1190000013153365
 
-    private MyAdapter adapter;
+    public MyAdapter mAdapter;
     private TabLayout tabLayout;
-    private ViewPager viewPager;
+    public ViewPager viewPager;
     private List<Fragment> list;
     private String[] titles = {"主页","消息","我的"};
     private int images[] ={R.drawable.comui_tab_home_selected,
@@ -66,21 +66,21 @@ public class HomeActivity extends BaseActivity  {
         list.add(new MessageFragment());
         list.add(new MineFragment());
 
-        adapter = new MyAdapter(getSupportFragmentManager(),this);
-        viewPager.setAdapter(adapter);
+        mAdapter = new MyAdapter(getSupportFragmentManager(),this);
+        viewPager.setAdapter(mAdapter);//使用适配器将viewPager和fragment绑定
 
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);//将tabLayout和viewPager绑定
 
         for (int i = 0; i<tabLayout.getTabCount();i++){
             TabLayout.Tab tab = tabLayout.getTabAt(i);
-            tab.setCustomView(adapter.getTabView(i));
+            tab.setCustomView(mAdapter.getTabView(i));
         }
 
     }
 
     class MyAdapter extends FragmentPagerAdapter{
         private Context context;
-        public MyAdapter(FragmentManager fm,Context context){
+        private MyAdapter(FragmentManager fm,Context context){
             super(fm);
             this.context = context;
 
@@ -97,7 +97,7 @@ public class HomeActivity extends BaseActivity  {
             return list.size();
         }
 
-        public View getTabView(int position){
+        private View getTabView(int position){
             View v = LayoutInflater.from(context).inflate(R.layout.tab_custom,null);
             TextView textView = v.findViewById(R.id.tv_title);
             ImageView imageView = v.findViewById(R.id.iv_icon);

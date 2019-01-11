@@ -1,5 +1,6 @@
 package com.example.machachong.youdu.view.fragment.home;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,18 +12,22 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.machachong.youdu.activity.base.BaseActivity;
 import com.example.imoocsdk.okhttp.listener.DisposeDataListener;
 import com.example.machachong.youdu.adapter.CourseAdapter;
+import com.example.machachong.youdu.constant.Constant;
 import com.example.machachong.youdu.view.fragment.BaseFragment;
 import com.example.machachong.youdu.R;
 import com.example.machachong.youdu.module.recommand.BaseRecommandModule;
 import com.example.machachong.youdu.network.http.RequestCenter;
 import com.example.machachong.youdu.view.home.HomeHeaderLayout;
-//import com.example.machachong.youdu.view.home.HomeHeaderLayout;
+import com.example.machachong.youdu.zxing.app.CaptureActivity;
 
 import static android.content.ContentValues.TAG;
 
 public class HomeFragment extends BaseFragment implements View.OnClickListener,AdapterView.OnItemClickListener{
+
+    private static final int REQUEST_QRCODE = 0x01;
     /**
      * UI
      * @param savedInstanceState
@@ -33,6 +38,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
     private TextView mCategoryView;
     private TextView mSearchView;
     private ImageView mLoadingView;
+    private TextView mQRCodeView;
 
 
     /**
@@ -58,6 +64,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
         return mContentView;
     }
     private void initView(){
+        mQRCodeView = mContentView.findViewById(R.id.qrcode_view);
+        mQRCodeView.setOnClickListener(this);
         mCategoryView = mContentView.findViewById(R.id.category_view);
         mCategoryView.setOnClickListener(this);
         mSearchView = mContentView.findViewById(R.id.search_view);
@@ -125,9 +133,22 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.qrcode_view:
+                doOpenCamera();
+//                if (hasPermisson(Constant.HARDWEAR_CAMERA_PERMISSION)){
+//                    doOpenCamera();
+//                }else {
+//                    requestPermissions(Constant.HARDWEAR_CAMERA_PERMISSION, Constant.HARDWEAR_CAMERA_CODE);
+//                }
+                break;
 
         }
 
+    }
+
+    public void doOpenCamera() {
+        Intent intent = new Intent(mContext, CaptureActivity.class);
+        startActivityForResult(intent, REQUEST_QRCODE);
     }
 
     @Override

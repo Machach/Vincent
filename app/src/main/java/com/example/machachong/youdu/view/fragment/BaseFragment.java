@@ -19,6 +19,7 @@ public class BaseFragment extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
     }
 
+
     @Override
     public void onResume() {
         super.onResume();

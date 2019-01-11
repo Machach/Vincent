@@ -34,10 +34,12 @@
         <activity android:name=".activity.SettingActivity"/>
         <activity android:name=".activity.LoginActivity"/>
         <activity android:name="com.example.imoocsdk.BaseOkhttpTest" />
+        <activity android:name=".zxing.app.CaptureActivity"/>
 
 
 
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
 </manifest>
