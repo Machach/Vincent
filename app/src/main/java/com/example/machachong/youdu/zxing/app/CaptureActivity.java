@@ -188,6 +188,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
                 finish();
             } else if (id == R.id.flash_btn) {
                 if (!isFlash) {
+                    //打开和关闭闪光灯
                     CameraManager.get().turnLightOn();
                 } else {
 

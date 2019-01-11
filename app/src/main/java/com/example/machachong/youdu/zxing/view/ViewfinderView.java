@@ -124,6 +124,7 @@ public final class ViewfinderView extends View {
         } else {
 
             paint.setColor(Color.BLUE);
+            //画矩形
             canvas.drawRect(frame.left, frame.top, frame.left + ScreenRate,
                     frame.top + CORNER_WIDTH, paint);
             canvas.drawRect(frame.left, frame.top, frame.left + CORNER_WIDTH,

@@ -27,6 +27,7 @@ import com.example.machachong.youdu.network.http.RequestCenter;
 import com.example.machachong.youdu.service.update.UpdateService;
 import com.example.machachong.youdu.util.Util;
 import com.example.machachong.youdu.view.CommonDialog;
+import com.example.machachong.youdu.view.MyQrCodeDialog;
 import com.example.machachong.youdu.view.fragment.BaseFragment;
 import com.example.machachong.youdu.manager.UserManager;
 
@@ -114,6 +115,14 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             case R.id.login_button:
                 mContext.startActivity(new Intent(mContext,LoginActivity.class));
                 break;
+            case R.id.my_qrcode_view:
+                if (!UserManager.getInstance().hasLoigin()){
+                    toLogin();
+                }else {
+                    MyQrCodeDialog dialog = new MyQrCodeDialog(mContext);
+                    dialog.show();
+                }
+                break;
         }
     }
 
@@ -152,6 +161,14 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 Toast.makeText(getContext(),"檢查版本失敗", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    /**
+     * 去登陆页面
+     */
+    private void toLogin() {
+        Intent intent = new Intent(mContext, LoginActivity.class);
+        mContext.startActivity(intent);
     }
 
     private void registerLoginBroadcast(){

@@ -1,5 +1,6 @@
 package com.example.machachong.youdu.view.fragment.home;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -11,7 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.imoocsdk.activity.AdBrowserActivity;
 import com.example.machachong.youdu.activity.base.BaseActivity;
 import com.example.imoocsdk.okhttp.listener.DisposeDataListener;
 import com.example.machachong.youdu.adapter.CourseAdapter;
@@ -154,6 +157,25 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        switch (requestCode){
+            //扫码结果处理
+            case REQUEST_QRCODE:
+                if (resultCode == Activity.RESULT_OK){
+                    String code = data.getStringExtra("SCAN_RESULT");
+                    if (code.contains("https")||code.contains("http")){
+                        Intent intent = new Intent(mContext, AdBrowserActivity.class);
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(mContext, code, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+        }
     }
 
     @Override
