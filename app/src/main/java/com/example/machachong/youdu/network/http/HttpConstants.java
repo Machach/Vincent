@@ -26,4 +26,9 @@ public class HttpConstants {
      * 登錄接口
      */
     public static String LOGIN = ROOT_URL + "/config/login.php";
+
+    /**
+     * 课程详情接口
+     */
+    public static String COURSE_DETAIL = ROOT_URL + "/product/course_detail.php";
 }

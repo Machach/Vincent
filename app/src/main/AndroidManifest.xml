@@ -36,6 +36,26 @@
         <activity android:name="com.example.imoocsdk.BaseOkhttpTest" />
         <activity android:name=".zxing.app.CaptureActivity"/>
         <activity android:name=".activity.PhotoViewActivity"/>
+        <activity android:name=".activity.CourseDetailActivity"/>
+
+        <!--shareSDK-->
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <data android:scheme="tencent100371282"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <!--weiixin-->
+
+
 
 
 

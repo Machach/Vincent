@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.machachong.youdu.share.ShareDialog;
 import com.google.gson.Gson;
 
 import com.example.imoocsdk.activity.AdBrowserActivity;
@@ -26,6 +28,7 @@ import com.example.machachong.youdu.module.recommand.RecommandBodyValue;
 import java.util.ArrayList;
 
 
+import cn.sharesdk.framework.Platform;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -222,10 +225,10 @@ public class CourseAdapter extends BaseAdapter {
                 mViewHolder.mTitleView.setText(value.title);
                 mViewHolder.mInfoView.setText(value.info.concat(mContext.getString(R.string.tian_qian)));
                 mViewHolder.mFooterView.setText(value.text);
-//                mViewHolder.mShareView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        ShareDialog dialog = new ShareDialog(mContext, false);
+                mViewHolder.mShareView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShareDialog dialog = new ShareDialog(mContext, false);
 //                        dialog.setShareType(Platform.SHARE_VIDEO);
 //                        dialog.setShareTitle(value.title);
 //                        dialog.setShareTitleUrl(value.site);
@@ -233,9 +236,9 @@ public class CourseAdapter extends BaseAdapter {
 //                        dialog.setShareSite(value.title);
 //                        dialog.setShareTitle(value.site);
 //                        dialog.setUrl(value.resource);
-//                        dialog.show();
-//                    }
-//                });
+                        dialog.show();
+                    }
+                });
                 break;
         }
         return convertView;

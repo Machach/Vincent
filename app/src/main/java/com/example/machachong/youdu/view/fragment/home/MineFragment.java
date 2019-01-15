@@ -25,12 +25,14 @@ import com.example.machachong.youdu.module.update.UpdateInfo;
 import com.example.machachong.youdu.module.update.UpdateModel;
 import com.example.machachong.youdu.network.http.RequestCenter;
 import com.example.machachong.youdu.service.update.UpdateService;
+import com.example.machachong.youdu.share.ShareDialog;
 import com.example.machachong.youdu.util.Util;
 import com.example.machachong.youdu.view.CommonDialog;
 import com.example.machachong.youdu.view.MyQrCodeDialog;
 import com.example.machachong.youdu.view.fragment.BaseFragment;
 import com.example.machachong.youdu.manager.UserManager;
 
+import cn.sharesdk.framework.Platform;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -123,7 +125,21 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     dialog.show();
                 }
                 break;
+            case R.id.share_imooc_view:
+                shareImooc();
+                break;
         }
+    }
+
+    private void shareImooc(){
+        ShareDialog dialog = new ShareDialog(mContext ,false);
+        dialog.setmShareType(Platform.SHARE_TEXT);
+        dialog.setmShareTitle("慕课网");
+        dialog.setmShareTileUrl("http://www.imooc.com");
+        dialog.setmShareSite("imooc");
+        dialog.setmShareText("慕课网");
+        dialog.setmShareSiteUrl("http://www.imooc.com");
+        dialog.show();
     }
 
     @Override

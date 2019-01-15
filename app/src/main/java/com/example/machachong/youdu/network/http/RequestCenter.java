@@ -6,6 +6,7 @@ import com.example.imoocsdk.okhttp.listener.DisposeDataHandle;
 import com.example.imoocsdk.okhttp.listener.DisposeDataListener;
 import com.example.imoocsdk.okhttp.request.CommonRequest;
 import com.example.imoocsdk.okhttp.request.RequestParams;
+import com.example.machachong.youdu.module.course.BaseCourseModel;
 import com.example.machachong.youdu.module.recommand.BaseRecommandModule;
 import com.example.machachong.youdu.module.update.UpdateModel;
 import com.example.machachong.youdu.module.user.User;
@@ -33,6 +34,12 @@ public class RequestCenter {
         params.put("mb", userName);
         params.put("pwd", passwd);
         RequestCenter.PostRequest(HttpConstants.LOGIN, params, listener, User.class);
+    }
+
+    public static void requestCourseDetail(String courseID, DisposeDataListener listener){
+        RequestParams params = new RequestParams();
+        params.put("courseID", courseID);
+        RequestCenter.PostRequest(HttpConstants.COURSE_DETAIL, params, listener,BaseCourseModel.class);
     }
 
 
